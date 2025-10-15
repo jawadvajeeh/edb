@@ -1,17 +1,17 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
-	--bgMain: #F0F4F8;
-	--border100: #BCCCDC;
-	--bg100: #102A43;
-	--nuetral100: #627D98
+  --bgMain: #f0f4f8;
+  --border100: #bcccdc;
+  --bg100: #102a43;
+  --nuetral100: #627d98;
 }
 
 @theme {
-	--color-bgMain: var(--bgMain);
-	--color-border100: var(--border100);
-	--color-bg100: var(--bg100);
-	--color-nuetral100: var(--nuetral100);
+  --color-bgMain: var(--bgMain);
+  --color-border100: var(--border100);
+  --color-bg100: var(--bg100);
+  --color-nuetral100: var(--nuetral100);
 }
 
 body {

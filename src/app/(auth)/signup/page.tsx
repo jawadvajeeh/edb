@@ -1,31 +1,56 @@
-import Link from "next/link";
+import Link from 'next/link';
 
 function Signup() {
   return (
-	<div className="h-screen grid place-items-center">
-		<div className="flex flex-col gap-6 p-8 rounded-md bg-white max-w-[400px] w-full">
-			<div className="flex flex-col gap-2 text-bg100">
-				<label className="text-nuetral100"  htmlFor="signup_email">Email</label>
-				<input className="border p-2 rounded-md outline-none border-border100 focus:outline-1 focus:outline-bg100 focus:outline-solid" type="email" name="email" id="signup_email" />
-			</div>
-			<div className="flex flex-col gap-2">
-				<label className="text-nuetral100"  htmlFor="signup_password">Password</label>
-				<input className="border p-2 rounded-md outline-none border-border100 focus:outline-1 focus:outline-bg100 focus:outline-solid" type="password" name="password" id="signup_password" />
-			</div>
-			<div className="flex flex-col gap-2">
-				<label className="text-nuetral100"  htmlFor="signup_confirm_password">Confirm Password</label>
-				<input className="border p-2 rounded-md outline-none border-border100 focus:outline-1 focus:outline-bg100 focus:outline-solid" type="password" name="confirmPassword" id="signup_confirm_password" />
-			</div>
-			<div className="flex flex-col gap-2">
-				<button className="border border-border100 py-2 bg-bg100 rounded-md text-bgMain">Sign up</button>
-				<div className="flex justify-between items-center">
-					<span className="text-sm text-nuetral100">Already have an account?</span>
-					<Link className="underline text-sm text-nuetral100 font-black" href='/login'>Login</Link>
-				</div>
-			</div>
-		</div>
-	</div>
-  )
+    <div className="grid h-screen place-items-center">
+      <div className="flex w-full max-w-[400px] flex-col gap-6 rounded-md bg-white p-8">
+        <div className="text-bg100 flex flex-col gap-2">
+          <label className="text-nuetral100" htmlFor="signup_email">
+            Email
+          </label>
+          <input
+            className="border-border100 focus:outline-bg100 rounded-md border p-2 outline-none focus:outline-1 focus:outline-solid"
+            type="email"
+            name="email"
+            id="signup_email"
+          />
+        </div>
+        <div className="flex flex-col gap-2">
+          <label className="text-nuetral100" htmlFor="signup_password">
+            Password
+          </label>
+          <input
+            className="border-border100 focus:outline-bg100 rounded-md border p-2 outline-none focus:outline-1 focus:outline-solid"
+            type="password"
+            name="password"
+            id="signup_password"
+          />
+        </div>
+        <div className="flex flex-col gap-2">
+          <label className="text-nuetral100" htmlFor="signup_confirm_password">
+            Confirm Password
+          </label>
+          <input
+            className="border-border100 focus:outline-bg100 rounded-md border p-2 outline-none focus:outline-1 focus:outline-solid"
+            type="password"
+            name="confirmPassword"
+            id="signup_confirm_password"
+          />
+        </div>
+        <div className="flex flex-col gap-2">
+          <button className="border-border100 bg-bg100 text-bgMain rounded-md border py-2">
+            Sign up
+          </button>
+          <div className="flex items-center justify-between">
+            <span className="text-nuetral100 text-sm">Already have an account?</span>
+            <Link className="text-nuetral100 text-sm font-black underline" href="/login">
+              Login
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default Signup
+export default Signup;
