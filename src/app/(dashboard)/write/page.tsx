@@ -1,5 +1,6 @@
 'use client';
 
+import AutoResizeTextarea from '@/components/ui/auto-resize-textarea';
 import { ToggleGroupItem, ToggleGroupRoot } from '@/components/ui/toggle-group';
 import React from 'react';
 
@@ -43,9 +44,9 @@ function Write() {
             <p className="text-xl">Take a moment to reflect on your journey.</p>
           </div>
         </div>
-        <div className="flex w-full flex-col rounded-md bg-white p-8">
+        <div className="flex w-full flex-col gap-4 rounded-md bg-white p-8">
           <div>
-            <h4 className="mb-2 font-semibold">Category</h4>
+            <h4 className="text-nuetral100 mb-2 font-semibold">Category</h4>
             <ToggleGroupRoot
               className="flex flex-wrap gap-2"
               value={category}
@@ -61,6 +62,25 @@ function Write() {
                 </ToggleGroupItem>
               ))}
             </ToggleGroupRoot>
+          </div>
+          <div>
+            <h4 className="text-nuetral100 mb-2 font-semibold">Title</h4>
+            <input
+              className="border-border100 focus:outline-bg100 placeholder-nuetral100 w-full rounded-md border p-2 outline-none focus:outline-1 focus:outline-solid"
+              placeholder="Give your entry a meaningful title..."
+            />
+          </div>
+          <div>
+            <h4 className="text-nuetral100 mb-2 font-semibold">Your Thoughts</h4>
+            <AutoResizeTextarea
+              className="placeholder-nuetral100 border-border100 focus:outline-bg100 w-full rounded-md border p-2 outline-none focus:outline-1 focus:outline-solid"
+              placeholder="What's on your mind today?"
+            />
+          </div>
+          <div className="flex justify-end">
+            <button className="border-border100 bg-bg100 text-bgMain w-full rounded-md border px-4 py-2 md:w-auto">
+              Save entry
+            </button>
           </div>
         </div>
       </div>
