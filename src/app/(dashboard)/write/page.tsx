@@ -38,15 +38,19 @@ function Write() {
     <div className="h-screen">
       <div className="flex flex-col items-center gap-12 px-2 py-24">
         <div className="flex flex-col items-center gap-4">
-          <h3 className="text-lg font-semibold">WEDNESDAY, OCTOBER 14, 2025</h3>
+          <h3 className="text-text100 font-semibold md:text-lg">WEDNESDAY, OCTOBER 14, 2025</h3>
           <div className="flex flex-col items-center gap-2">
-            <h1 className="text-center text-6xl font-bold">Good Morning.</h1>
-            <p className="text-xl">Take a moment to reflect on your journey.</p>
+            <h1 className="text-text400 text-center text-4xl font-semibold md:text-5xl">
+              Good Morning.
+            </h1>
+            <p className="text-text100 text-lg md:text-xl">
+              Take a moment to reflect on your journey.
+            </p>
           </div>
         </div>
-        <div className="flex w-full flex-col gap-4 rounded-md bg-white p-8">
+        <div className="flex w-full flex-col gap-4 rounded-lg bg-white p-4 md:p-8">
           <div>
-            <h4 className="text-nuetral100 mb-2 font-semibold">Category</h4>
+            <h4 className="text-text500 mb-2 font-semibold">Category</h4>
             <ToggleGroupRoot
               className="flex flex-wrap gap-2"
               value={category}
@@ -54,7 +58,7 @@ function Write() {
             >
               {categories.map((cat) => (
                 <ToggleGroupItem
-                  className="border-border100 data-[state=on]:bg-nuetral100 data-[state=on]:text-border100 rounded-full border px-2 py-1 md:px-4"
+                  className="border-border100 data-[state=on]:bg-primary100 data-[state=on]:text-bg100 rounded-full border px-2 py-1 md:px-4"
                   key={cat.value}
                   value={cat.value}
                 >
@@ -64,23 +68,22 @@ function Write() {
             </ToggleGroupRoot>
           </div>
           <div>
-            <h4 className="text-nuetral100 mb-2 font-semibold">Title</h4>
+            <h4 className="text-text500 mb-2 font-semibold">Title</h4>
             <input
-              className="border-border100 focus:outline-bg100 placeholder-nuetral100 w-full rounded-md border p-2 outline-none focus:outline-1 focus:outline-solid"
+              className="my-input placeholder-text100 w-full"
               placeholder="Give your entry a meaningful title..."
             />
           </div>
           <div>
-            <h4 className="text-nuetral100 mb-2 font-semibold">Your Thoughts</h4>
+            <h4 className="text-text500 mb-2 font-semibold">Your Thoughts</h4>
             <AutoResizeTextarea
-              className="placeholder-nuetral100 border-border100 focus:outline-bg100 w-full rounded-md border p-2 outline-none focus:outline-1 focus:outline-solid"
+              minHeight="180px"
+              className="my-input placeholder-text100 w-full"
               placeholder="What's on your mind today?"
             />
           </div>
           <div className="flex justify-end">
-            <button className="border-border100 bg-bg100 text-bgMain w-full rounded-md border px-4 py-2 md:w-auto">
-              Save entry
-            </button>
+            <button className="btn-primary w-full px-4 md:w-auto">Save entry</button>
           </div>
         </div>
       </div>

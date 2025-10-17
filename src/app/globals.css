@@ -1,21 +1,67 @@
 @import 'tailwindcss';
 
 :root {
-  --bgMain: #f0f4f8;
-  --border100: #bcccdc;
-  --bg100: #102a43;
-  --nuetral100: #627d98;
+  /* neutrals */
+  --bg100: hsl(40, 23%, 97%);
+  --bg200: hsl(43, 13%, 90%);
+  --bg300: hsl(40, 15%, 80%);
+  --bg400: hsl(39, 11%, 69%);
+  --bg500: hsl(41, 8%, 61%);
+
+  --text100: hsl(41, 8%, 48%);
+  --text200: hsl(41, 9%, 35%);
+  --text300: hsl(37, 11%, 28%);
+  --text400: hsl(40, 13%, 23%);
+  --text500: hsl(42, 15%, 13%);
+
+  --border100: hsl(40, 15%, 80%);
+  --border200: hsl(39, 11%, 69%);
+  --border300: hsl(41, 8%, 61%);
+  --border400: hsl(41, 8%, 48%);
+  --border500: hsl(37, 11%, 28%);
+
+  --primary100: hsl(184, 65%, 59%);
+  --primary200: hsl(185, 57%, 50%);
+  --primary300: hsl(185, 62%, 45%);
 }
 
 @theme {
-  --color-bgMain: var(--bgMain);
-  --color-border100: var(--border100);
-  --color-bg100: var(--bg100);
   --color-nuetral100: var(--nuetral100);
+
+  --color-bg100: var(--bg100);
+  --color-bg200: var(--bg200);
+  --color-bg300: var(--bg300);
+  --color-bg300: var(--bg300);
+  --color-bg400: var(--bg400);
+  --color-bg500: var(--bg500);
+
+  --color-text100: var(--text100);
+  --color-text200: var(--text200);
+  --color-text300: var(--text300);
+  --color-text400: var(--text400);
+  --color-text500: var(--text500);
+
+  --color-border100: var(--border100);
+  --color-border200: var(--border200);
+  --color-border300: var(--border300);
+  --color-border400: var(--border400);
+  --color-border500: var(--border500);
+
+  --color-primary100: var(--primary100);
+  --color-primary200: var(--primary200);
+  --color-primary300: var(--primary300);
 }
 
 body {
   font-family: Arial, Helvetica, sans-serif;
   width: 100vw;
   height: 100vh;
+}
+
+.my-input {
+  @apply border-border100 focus:outline-border500 rounded-md border p-2 outline-none focus:outline-1 focus:outline-solid;
+}
+
+.btn-primary {
+  @apply bg-primary100 text-bg100 rounded-md py-2 font-semibold;
 }
