@@ -2,7 +2,9 @@
 
 import AutoResizeTextarea from '@/components/ui/auto-resize-textarea';
 import { ToggleGroupItem, ToggleGroupRoot } from '@/components/ui/toggle-group';
+import { formatDateReadable, getGreeting } from '@/lib/utils';
 import React from 'react';
+import Markdown from 'react-markdown';
 
 const categories = [
   {
@@ -31,17 +33,21 @@ const categories = [
   },
 ];
 
+type Mode = 'write' | 'preview';
+
 function Write() {
   const [category, setCategory] = React.useState<string | null>(null);
+  const [mode, setMode] = React.useState<Mode>('write');
+  const [content, setContent] = React.useState('');
 
   return (
     <div className="h-screen">
-      <div className="flex flex-col items-center gap-12 px-2 py-24">
+      <div className="flex flex-col items-center gap-12 px-2 py-2 md:py-24">
         <div className="flex flex-col items-center gap-4">
-          <h3 className="text-text100 font-semibold md:text-lg">WEDNESDAY, OCTOBER 14, 2025</h3>
+          <h3 className="text-text100 font-semibold md:text-lg">{formatDateReadable()}</h3>
           <div className="flex flex-col items-center gap-2">
-            <h1 className="text-text400 text-center text-4xl font-semibold md:text-5xl">
-              Good Morning.
+            <h1 className="text-supporting100 text-center text-4xl font-semibold md:text-5xl">
+              {getGreeting()}
             </h1>
             <p className="text-text100 text-lg md:text-xl">
               Take a moment to reflect on your journey.
@@ -75,12 +81,38 @@ function Write() {
             />
           </div>
           <div>
-            <h4 className="text-text500 mb-2 font-semibold">Your Thoughts</h4>
-            <AutoResizeTextarea
-              minHeight="180px"
-              className="my-input placeholder-text100 w-full"
-              placeholder="What's on your mind today?"
-            />
+            <div className="mb-1 flex items-center justify-between">
+              <h4 className="text-text500 mb-2 font-semibold">Your Thoughts</h4>
+              <div className="bg-bg100 border-border100 flex items-center gap-1 rounded-md border p-1">
+                <button
+                  data-mode={mode}
+                  onClick={() => setMode('write')}
+                  className="data-[mode=write]:bg-primary100 data-[mode=write]:text-bg100 rounded-md px-4"
+                >
+                  Write
+                </button>
+                <button
+                  data-mode={mode}
+                  onClick={() => setMode('preview')}
+                  className="data-[mode=preview]:bg-primary100 data-[mode=preview]:text-bg100 rounded-sm px-4"
+                >
+                  Preview
+                </button>
+              </div>
+            </div>
+            {mode === 'write' ? (
+              <AutoResizeTextarea
+                value={content}
+                minHeight="180px"
+                className="my-input placeholder-text100 w-full"
+                placeholder="What's on your mind today?"
+                onChange={(e) => setContent(e.target.value)}
+              />
+            ) : (
+              <div className="border-border100 bg-bg100 prose min-h-[200px] max-w-none rounded-md border p-2">
+                <Markdown>{content}</Markdown>
+              </div>
+            )}
           </div>
           <div className="flex justify-end">
             <button className="btn-primary w-full px-4 md:w-auto">Save entry</button>

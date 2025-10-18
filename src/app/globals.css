@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@plugin '@tailwindcss/typography';
 
 :root {
   /* neutrals */
@@ -23,6 +24,9 @@
   --primary100: hsl(184, 65%, 59%);
   --primary200: hsl(185, 57%, 50%);
   --primary300: hsl(185, 62%, 45%);
+
+  --supporting100: hsl(360, 92%, 20%);
+  --supporting200: hsl(360, 85%, 25%);
 }
 
 @theme {
@@ -50,6 +54,9 @@
   --color-primary100: var(--primary100);
   --color-primary200: var(--primary200);
   --color-primary300: var(--primary300);
+
+  --color-supporting100: var(--supporting100);
+  --color-supporting200: var(--supporting200);
 }
 
 body {
