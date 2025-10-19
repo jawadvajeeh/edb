@@ -3,6 +3,8 @@
 import AutoResizeTextarea from '@/components/ui/auto-resize-textarea';
 import { ToggleGroupItem, ToggleGroupRoot } from '@/components/ui/toggle-group';
 import { formatDateReadable, getGreeting } from '@/lib/utils';
+import { ArrowRight, Eye, PenLine } from 'lucide-react';
+import Link from 'next/link';
 import React from 'react';
 import Markdown from 'react-markdown';
 
@@ -42,7 +44,7 @@ function Write() {
 
   return (
     <div className="h-screen">
-      <div className="flex flex-col items-center gap-12 px-2 py-2 md:py-24">
+      <div className="flex flex-col items-center px-2 py-2 md:py-24">
         <div className="flex flex-col items-center gap-4">
           <h3 className="text-text100 font-semibold md:text-lg">{formatDateReadable()}</h3>
           <div className="flex flex-col items-center gap-2">
@@ -54,7 +56,13 @@ function Write() {
             </p>
           </div>
         </div>
-        <div className="flex w-full flex-col gap-4 rounded-lg bg-white p-4 md:p-8">
+        <div className="mt-4 flex w-full justify-end gap-1 p-4">
+          <Link className="text-text100 font-semibold" href="/entries">
+            View all entries
+          </Link>
+          <ArrowRight color="hsl(41, 8%, 48%)" />
+        </div>
+        <div className="border-border100 flex w-full flex-col gap-4 rounded-lg border bg-white p-4 shadow-md md:p-8">
           <div>
             <h4 className="text-text500 mb-2 font-semibold">Category</h4>
             <ToggleGroupRoot
@@ -83,19 +91,21 @@ function Write() {
           <div>
             <div className="mb-1 flex items-center justify-between">
               <h4 className="text-text500 mb-2 font-semibold">Your Thoughts</h4>
-              <div className="bg-bg100 border-border100 flex items-center gap-1 rounded-md border p-1">
+              <div className="bg-bg100 border-border100 text-text100 flex items-center gap-1 rounded-md border p-1">
                 <button
                   data-mode={mode}
                   onClick={() => setMode('write')}
-                  className="data-[mode=write]:bg-primary100 data-[mode=write]:text-bg100 rounded-md px-4"
+                  className="data-[mode=write]:bg-primary100 data-[mode=write]:text-bg100 flex items-center gap-2 rounded-md px-4"
                 >
+                  <PenLine size={16} />
                   Write
                 </button>
                 <button
                   data-mode={mode}
                   onClick={() => setMode('preview')}
-                  className="data-[mode=preview]:bg-primary100 data-[mode=preview]:text-bg100 rounded-sm px-4"
+                  className="data-[mode=preview]:bg-primary100 data-[mode=preview]:text-bg100 flex items-center gap-2 rounded-sm px-4"
                 >
+                  <Eye size={16} />
                   Preview
                 </button>
               </div>
