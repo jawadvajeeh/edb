@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 function Login() {
   return (
-    <div className="grid h-screen place-items-center">
+    <div className="font-main grid h-screen place-items-center">
       <div className="flex w-full max-w-[400px] flex-col gap-6 rounded-md bg-white p-8">
         <div className="text-bg100 flex flex-col gap-2">
           <label className="text-text300" htmlFor="signup_email">

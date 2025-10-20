@@ -43,7 +43,7 @@ function Write() {
   const [content, setContent] = React.useState('');
 
   return (
-    <div className="h-screen">
+    <div className="font-main h-screen">
       <div className="flex flex-col items-center px-2 py-2 md:py-24">
         <div className="flex flex-col items-center gap-4">
           <h3 className="text-text100 font-semibold md:text-lg">{formatDateReadable()}</h3>

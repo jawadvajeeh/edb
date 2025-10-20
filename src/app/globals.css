@@ -2,7 +2,6 @@
 @plugin '@tailwindcss/typography';
 
 :root {
-  /* neutrals */
   --bg100: hsl(40, 23%, 97%);
   --bg200: hsl(43, 13%, 90%);
   --bg300: hsl(40, 15%, 80%);
@@ -29,9 +28,7 @@
   --supporting200: hsl(360, 85%, 25%);
 }
 
-@theme {
-  --color-nuetral100: var(--nuetral100);
-
+@theme inline {
   --color-bg100: var(--bg100);
   --color-bg200: var(--bg200);
   --color-bg300: var(--bg300);
@@ -57,6 +54,8 @@
 
   --color-supporting100: var(--supporting100);
   --color-supporting200: var(--supporting200);
+
+  --font-main: var(--font-open-sans);
 }
 
 body {
