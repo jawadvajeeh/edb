@@ -1,10 +1,11 @@
+import { MainContainer } from '@/components/layout/main-container';
 import { ArrowRight, PenLine } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 
 function Entries() {
   return (
-    <div className="font-main h-screen">
+    <MainContainer>
       <div className="flex flex-col items-start px-2 py-2 md:py-24">
         <div className="mb-16 flex w-full items-baseline justify-between">
           <div>
@@ -49,7 +50,7 @@ function Entries() {
           </div>
         </div>
       </div>
-    </div>
+    </MainContainer>
   );
 }
 

@@ -54,14 +54,11 @@
 
   --color-supporting100: var(--supporting100);
   --color-supporting200: var(--supporting200);
-
-  --font-main: var(--font-open-sans);
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  width: 100vw;
-  height: 100vh;
+  font-family: var(--font-montserrat);
+  min-height: 100vh;
 }
 
 .my-input {

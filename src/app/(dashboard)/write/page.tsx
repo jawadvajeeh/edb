@@ -1,5 +1,6 @@
 'use client';
 
+import { MainContainer } from '@/components/layout/main-container';
 import AutoResizeTextarea from '@/components/ui/auto-resize-textarea';
 import { ToggleGroupItem, ToggleGroupRoot } from '@/components/ui/toggle-group';
 import { formatDateReadable, getGreeting } from '@/lib/utils';
@@ -43,7 +44,7 @@ function Write() {
   const [content, setContent] = React.useState('');
 
   return (
-    <div className="font-main h-screen">
+    <MainContainer>
       <div className="flex flex-col items-center px-2 py-2 md:py-24">
         <div className="flex flex-col items-center gap-4">
           <h3 className="text-text100 font-semibold md:text-lg">{formatDateReadable()}</h3>
@@ -129,7 +130,7 @@ function Write() {
           </div>
         </div>
       </div>
-    </div>
+    </MainContainer>
   );
 }
 

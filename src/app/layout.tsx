@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
-import { Open_Sans } from 'next/font/google';
+import { Montserrat } from 'next/font/google';
 import './globals.css';
 
-const openSans = Open_Sans({
-  variable: '--font-open-sans',
+const montserrat = Montserrat({
+  variable: '--font-montserrat',
   subsets: ['latin'],
 });
 
@@ -19,9 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${openSans.variable} bg-bg100 mx-auto max-w-6xl antialiased`}>
-        {children}
-      </body>
+      <body className={`${montserrat.variable} bg-bg100 antialiased`}>{children}</body>
     </html>
   );
 }
