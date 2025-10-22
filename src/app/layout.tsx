@@ -8,8 +8,9 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: 'Engineering Day Book',
-  description: 'Capture your engineering journey',
+  title: 'Engineering Diary - A minimalist log that helps you grow beyond your code.',
+  description:
+    'Capture what you built, learned, and fixed. A minimalist log that helps you grow beyond your code.',
 };
 
 export default function RootLayout({
