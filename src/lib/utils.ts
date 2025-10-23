@@ -1,3 +1,6 @@
+import { clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
 export function formatDateReadable(timestamp: number = Date.now()): string {
 	const date = new Date(timestamp);
 	return date.toLocaleDateString('en-US', {
@@ -17,3 +20,11 @@ export function getGreeting(date: Date = new Date()): string {
 	if (hour < 21) return 'Good evening.';
 	return 'Good night';
 }
+
+
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function cn(...inputs: any[]) {
+	return twMerge(clsx(inputs));
+}
+

@@ -134,10 +134,12 @@ body {
   background-color: var(--color-cool-grey-50);
 }
 
-.my-input {
-  @apply border-border100 focus:outline-border500 rounded-md border p-2 outline-none focus:outline-1 focus:outline-solid;
-}
+.prose-brand {
+  @apply prose max-w-none;
 
-.btn-primary {
-  @apply bg-primary100 text-bg100 rounded-md py-2 font-semibold;
+  font-family: inherit;
+  --tw-prose-body: var(--color-cool-grey-800);
+  --tw-prose-headings: var(--color-indigo-900);
+  --tw-prose-pre-code: var(--color-indigo-50);
+  --tw-prose-pre-bg: var(--color-indigo-950);
 }

@@ -1,15 +1,23 @@
+import { cn } from '@/lib/utils';
 import { cva, VariantProps } from 'class-variance-authority';
 import React from 'react';
 
-function cn(...classes: Array<string | undefined | null | false>) {
-  return classes.filter(Boolean).join(' ');
-}
-
-const base = '';
+const base = 'text-indigo-900 rounded-md disabled:opacity-90';
 
 export const buttonVariants = cva(base, {
-  variants: {},
-  defaultVariants: {},
+  variants: {
+    variant: {
+      primary: 'bg-indigo-100',
+    },
+    size: {
+      base: 'text-base p-2',
+      small: 'text-sm px-2 py-1',
+    },
+  },
+  defaultVariants: {
+    variant: 'primary',
+    size: 'base',
+  },
 });
 
 type VariantPropsOfButton = VariantProps<typeof buttonVariants>;
@@ -17,9 +25,16 @@ type VariantPropsOfButton = VariantProps<typeof buttonVariants>;
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & VariantPropsOfButton;
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, children, ...rest }, ref) => {
+  ({ className, children, variant, size, disabled, ...rest }, ref) => {
+    const isDisabled = disabled;
     return (
-      <button ref={ref} className={cn(buttonVariants({}), className)} {...rest}>
+      <button
+        aria-disabled={isDisabled ? true : undefined}
+        ref={ref}
+        disabled={isDisabled}
+        className={cn(buttonVariants({ variant, size }), className)}
+        {...rest}
+      >
         {children}
       </button>
     );
