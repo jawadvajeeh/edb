@@ -8,7 +8,8 @@ import AutoResizeTextarea from '@/components/ui/auto-resize-textarea';
 import { ToggleGroupItem, ToggleGroupRoot } from '@/components/ui/toggle-group';
 import Markdown from 'react-markdown';
 import { Button } from '@/components/ui/button';
-import { Eye, PenLine, SendHorizontal } from 'lucide-react';
+import { ArrowRight, Eye, PenLine, SendHorizontal } from 'lucide-react';
+import Link from 'next/link';
 
 const categories = [
   {
@@ -62,6 +63,18 @@ function Write() {
     <div>
       <Navbar />
       <MainContainer>
+        <div className="mb-4 flex w-full justify-end">
+          <Link
+            className="text-cool-grey-500 group flex items-center gap-2 font-medium hover:text-indigo-600"
+            href="/entries"
+          >
+            <span>View Entries</span>
+            <ArrowRight
+              strokeWidth={1.5}
+              className="transition-transform duration-300 ease-out group-hover:translate-x-1 group-hover:text-indigo-600"
+            />
+          </Link>
+        </div>
         <EntryTitleInput type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
         <div className="mt-8">
           <ToggleGroupRoot
