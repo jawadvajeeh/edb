@@ -124,13 +124,15 @@ function Write() {
                 className="text-cool-grey-800 w-full rounded-md bg-transparent p-2 text-xl placeholder-indigo-900/50 outline-none md:text-2xl"
               />
             ) : (
-              <div className="prose-brand min-h-[300px] w-full rounded-md p-2">
+              <div className="prose-brand min-h-[300px] w-full rounded-md">
                 {content ? (
                   <Markdown>{content}</Markdown>
                 ) : (
-                  <p className="text-cool-grey-300 p-4 text-center text-xl italic md:text-2xl">
-                    Start writing to preview your content
-                  </p>
+                  <div className="min-h-[300px]">
+                    <p className="text-cool-grey-300 p-4 text-center text-xl italic md:text-2xl">
+                      Start writing to preview your content
+                    </p>
+                  </div>
                 )}
               </div>
             )}
@@ -138,7 +140,7 @@ function Write() {
               <Button
                 onClick={handleSubmit}
                 disabled={!isSubmitEnabled}
-                className="flex items-center gap-2 px-4 font-medium"
+                className="flex cursor-pointer items-center gap-2 px-4 font-medium"
               >
                 <SendHorizontal color="#19216c" className="md:hidden" strokeWidth={1.5} size={16} />
                 <span className="hidden md:block">Publish</span>

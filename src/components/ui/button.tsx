@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils';
 import { cva, VariantProps } from 'class-variance-authority';
 import React from 'react';
 
-const base = 'text-indigo-900 rounded-md disabled:opacity-90';
+const base = 'text-indigo-900 rounded-md disabled:opacity-70 disabled:cursor-not-allowed';
 
 export const buttonVariants = cva(base, {
   variants: {

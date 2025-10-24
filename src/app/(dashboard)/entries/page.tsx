@@ -1,5 +1,6 @@
 import { MainContainer } from '@/components/layout/main-container';
 import { Navbar } from '@/components/layout/navbar';
+import { Chip } from '@/components/ui/chip';
 import { ArrowRight, PenLine } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
@@ -38,9 +39,7 @@ function Entries() {
                     <p className="text-cool-grey-400 p-4 font-medium">Oct 14, 2025</p>
                   </div>
                   <div className="flex-2">
-                    <span className="rounded-full border border-indigo-900 bg-indigo-100 px-2 py-1 text-sm font-medium text-indigo-900 transition-colors md:px-4 md:text-base">
-                      REALIZATION
-                    </span>
+                    <Chip>REALIZATION</Chip>
                     <p className="text-cool-grey-700 mt-4 text-lg font-medium md:text-2xl">
                       Breakthrough in in uderstanding React Server Components
                     </p>
