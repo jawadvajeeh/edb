@@ -1,62 +1,48 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { EntryTitleInput } from '@/components/features/entry-title-input';
 import { MainContainer } from '@/components/layout/main-container';
 import { Navbar } from '@/components/layout/navbar';
-import AutoResizeTextarea from '@/components/ui/auto-resize-textarea';
-import { ToggleGroupItem, ToggleGroupRoot } from '@/components/ui/toggle-group';
-import Markdown from 'react-markdown';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Eye, PenLine, SendHorizontal } from 'lucide-react';
+import { ArrowRight, SendHorizontal } from 'lucide-react';
 import Link from 'next/link';
-
-const categories = [
-  {
-    value: 'progress',
-    label: 'Progress',
-  },
-  {
-    value: 'challenge',
-    label: 'Challenge',
-  },
-  {
-    value: 'realization',
-    label: 'Realization',
-  },
-  {
-    value: 'reflection',
-    label: 'Reflection',
-  },
-  {
-    value: 'codeSnippet',
-    label: 'Code Snippet',
-  },
-  {
-    value: 'growthOrAchivement',
-    label: 'Growth/Achievement',
-  },
-];
-
-type Mode = 'write' | 'preview';
+import { ELogEntry, Mode } from '@/types';
+import { useIsValidEntry } from '@/hooks/use-valid-entry';
+import { Editor } from '@/components/features/write/editor';
+import { EntryCategories } from '@/components/features/write/entry-categories';
+import { ToggleEditorMode } from '@/components/features/write/toggle-editor-mode';
 
 function Write() {
-  const [title, setTitle] = React.useState('');
-  const [category, setCategory] = React.useState<string | null>(null);
   const [mode, setMode] = React.useState<Mode>('write');
-  const [content, setContent] = React.useState('');
-  const [isSubmitEnabled, setIsSubmitEnabled] = React.useState(false);
 
-  React.useEffect(() => {
-    if (category !== null && content !== '' && title !== '') {
-      setIsSubmitEnabled(true);
-    } else {
-      setIsSubmitEnabled(false);
-    }
-  }, [category, content, title]);
+  const [logEntry, setLogEntry] = useState<ELogEntry>({
+    category: null,
+    content: '',
+    title: '',
+  });
+
+  const { category, content, title } = logEntry;
+
+  const isLogEntryValid = useIsValidEntry(logEntry);
+
+  function handleEntryChange<K extends keyof typeof logEntry>(key: K, value: (typeof logEntry)[K]) {
+    setLogEntry((prev) => ({ ...prev, [key]: value }));
+  }
 
   function handleSubmit() {
-    alert('Submit');
+    const entry = {
+      id: String(Date.now()),
+      title,
+      category,
+      content,
+      createdAt: new Date().toISOString(),
+    };
+    const existingEntries = JSON.parse(localStorage.getItem('entries') ?? '[]') || [];
+    existingEntries.push(entry);
+    localStorage.setItem('entries', JSON.stringify(existingEntries));
+
+    setLogEntry({ category: null, content: '', title: '' });
   }
 
   return (
@@ -75,71 +61,22 @@ function Write() {
             />
           </Link>
         </div>
-        <EntryTitleInput type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+        <EntryTitleInput
+          type="text"
+          value={title}
+          onChange={(e) => handleEntryChange('title', e.target.value)}
+        />
         <div className="mt-8">
-          <ToggleGroupRoot
-            value={category}
-            onValueChange={setCategory}
-            className="flex flex-wrap gap-2"
-          >
-            {categories.map((cat) => (
-              <ToggleGroupItem
-                className="border-cool-grey-500 text-cool-grey-500 rounded-full border px-2 py-1 transition-colors data-[state=on]:border-indigo-900 data-[state=on]:bg-indigo-100 data-[state=on]:font-medium data-[state=on]:text-indigo-900 md:px-4"
-                key={cat.value}
-                value={cat.value}
-              >
-                {cat.label}
-              </ToggleGroupItem>
-            ))}
-          </ToggleGroupRoot>
+          <EntryCategories category={category} handleChange={handleEntryChange} />
         </div>
         <div className="my-8">
-          <div className="flex w-full justify-end">
-            <div className="flex rounded-md">
-              <Button
-                onClick={() => setMode('write')}
-                data-mode={mode}
-                className="flex items-center gap-2 rounded-r-none font-medium data-[mode=preview]:bg-indigo-50"
-              >
-                <PenLine size={16} />
-                <span className="hidden md:block">Write</span>
-              </Button>
-              <Button
-                onClick={() => setMode('preview')}
-                data-mode={mode}
-                className="flex items-center gap-2 rounded-l-none font-medium data-[mode=write]:bg-indigo-50"
-              >
-                <Eye size={16} />
-                <span className="hidden md:block">Preview</span>
-              </Button>
-            </div>
-          </div>
+          <ToggleEditorMode mode={mode} setMode={setMode} />
           <div>
-            {mode === 'write' ? (
-              <AutoResizeTextarea
-                onChange={(e) => setContent(e.target.value)}
-                value={content}
-                minHeight="300px"
-                placeholder="Your Thoughts..."
-                className="text-cool-grey-800 w-full rounded-md bg-transparent p-2 text-xl placeholder-indigo-900/50 outline-none md:text-2xl"
-              />
-            ) : (
-              <div className="prose-brand min-h-[300px] w-full rounded-md">
-                {content ? (
-                  <Markdown>{content}</Markdown>
-                ) : (
-                  <div className="min-h-[300px]">
-                    <p className="text-cool-grey-300 p-4 text-center text-xl italic md:text-2xl">
-                      Start writing to preview your content
-                    </p>
-                  </div>
-                )}
-              </div>
-            )}
+            <Editor mode={mode} content={content} handleChange={handleEntryChange} />
             <div className="flex justify-end">
               <Button
                 onClick={handleSubmit}
-                disabled={!isSubmitEnabled}
+                disabled={!isLogEntryValid}
                 className="flex cursor-pointer items-center gap-2 px-4 font-medium"
               >
                 <SendHorizontal color="#19216c" className="md:hidden" strokeWidth={1.5} size={16} />
