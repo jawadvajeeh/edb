@@ -4,38 +4,19 @@ import { BackToEntries } from '@/components/features/back-to-entries';
 import { MainContainer } from '@/components/layout/main-container';
 import { Navbar } from '@/components/layout/navbar';
 import { Chip } from '@/components/ui/chip';
+import { useGetEntry } from '@/hooks/use-get-entry';
 import { PenLine } from 'lucide-react';
 import Link from 'next/link';
-import { use, useEffect, useMemo, useState } from 'react';
+import { use, useMemo } from 'react';
 import Markdown from 'react-markdown';
 
 function Entry({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
-  const [entry, setEntry] = useState<{
-    id: string;
-    title: string;
-    category: string;
-    content: string;
-    createdAt: string;
-  } | null>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    const stored: {
-      id: string;
-      title: string;
-      category: string;
-      content: string;
-      createdAt: string;
-    }[] = JSON.parse(localStorage.getItem('entries') || '[]');
-    const found = stored.find((e) => e.id === id) || null;
-    setEntry(found);
-  }, [id]);
+  const { entry, loading } = useGetEntry(id);
 
   const date = useMemo(() => (entry ? new Date(entry.createdAt).toLocaleString() : ''), [entry]);
 
-  if (!mounted) return null;
+  if (loading) return <p>...</p>;
 
   if (!entry) {
     return (
@@ -63,7 +44,7 @@ function Entry({ params }: { params: Promise<{ id: string }> }) {
             </div>
             <div>
               <Link
-                href="/write"
+                href={`/entries/${id}/edit`}
                 className="flex items-center gap-2 rounded-md border border-indigo-950 bg-indigo-100 p-2 font-medium text-indigo-900 transition-colors duration-100 ease-linear hover:border-none hover:bg-indigo-200 hover:text-indigo-50 md:h-12"
               >
                 <PenLine size={16} />

@@ -24,3 +24,5 @@ export const categories = [
 		label: 'Growth/Achievement',
 	},
 ] as const;
+
+export const STORAGE_KEY_ENTRIES = 'entries';

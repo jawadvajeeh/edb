@@ -37,6 +37,7 @@ function Write() {
       category,
       content,
       createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
     };
     const existingEntries = JSON.parse(localStorage.getItem('entries') ?? '[]') || [];
     existingEntries.push(entry);

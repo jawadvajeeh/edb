@@ -3,9 +3,11 @@
 import { MainContainer } from '@/components/layout/main-container';
 import { Navbar } from '@/components/layout/navbar';
 import { Chip } from '@/components/ui/chip';
+import { useEntries } from '@/hooks/use-entries';
+import { groupEntriesByWeek } from '@/lib/utils';
 import { ArrowRight, PenLine } from 'lucide-react';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 type Entry = {
   id: string;
@@ -28,18 +30,11 @@ const toPlainPreview = (md: string) =>
 type Entries = Entry[];
 
 function Entries() {
-  const [entries, setEntries] = useState<Entries>([]);
-  const [mounted, setMounted] = useState(false);
+  const { entries, loading } = useEntries();
 
-  useEffect(() => {
-    setMounted(true);
-    const stored: Entry[] = JSON.parse(localStorage.getItem('entries') || '[]');
-    setEntries(stored.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)));
-    setEntries(stored);
-  }, []);
+  if (loading) return <p>Loading...</p>;
 
-  if (!mounted) return null;
-
+  const groups = groupEntriesByWeek(entries);
   return (
     <div>
       <Navbar />
@@ -65,38 +60,52 @@ function Entries() {
             </div>
           </div>
           <div className="w-full">
-            <p className="text-cool-grey-500 mb-8 text-xl font-medium md:text-3xl">Oct 2025</p>
-            <div className="flex flex-col gap-8">
-              {entries.length > 0 ? (
-                entries.map((entry, index) => {
-                  const preview = toPlainPreview(entry.content);
-                  const withEllipsis = preview.length === 250 ? preview + '…' : preview;
+            {groups.map((g) => {
+              return (
+                <section key={g.key}>
+                  <p className="text-cool-grey-500 mb-8 text-xl font-medium md:text-3xl">
+                    {g.label}
+                  </p>
+                  <div className="flex flex-col gap-8">
+                    {g.entries.length > 0 ? (
+                      g.entries.map((entry, index) => {
+                        const preview = toPlainPreview(entry.content);
+                        const withEllipsis = preview.length === 250 ? preview + '…' : preview;
 
-                  return (
-                    <Link key={index} className="group inline-block" href={`/entries/${entry.id}`}>
-                      <div className="border-cool-grey-100 flex border-b-1 pb-8 transition-colors duration-300 ease-out group-hover:border-indigo-600">
-                        <div className="flex flex-1 items-center justify-center">
-                          <p className="text-cool-grey-400 p-4 font-medium">Oct 14, 2025</p>
-                        </div>
-                        <div className="flex-2">
-                          <Chip>{entry.category}</Chip>
-                          <p className="text-cool-grey-700 mt-4 text-lg font-medium md:text-2xl">
-                            {entry.title}
-                          </p>
-                          <p className="text-cool-grey-400 w-full">{withEllipsis}</p>
-                          <p></p>
-                        </div>
-                        <div className="flex flex-1 justify-end">
-                          <ArrowRight className="text-indigo-700 transition-all duration-300 ease-out group-hover:translate-x-1" />
-                        </div>
-                      </div>
-                    </Link>
-                  );
-                })
-              ) : (
-                <p>No entries yet.</p>
-              )}
-            </div>
+                        return (
+                          <Link
+                            key={index}
+                            className="group inline-block"
+                            href={`/entries/${entry.id}`}
+                          >
+                            <div className="border-cool-grey-100 flex border-b-1 pb-8 transition-colors duration-300 ease-out group-hover:border-indigo-600">
+                              <div className="flex flex-1 items-center justify-center">
+                                <p className="text-cool-grey-400 p-4 font-medium">
+                                  {new Date(entry.createdAt).toLocaleString()}
+                                </p>
+                              </div>
+                              <div className="flex-2">
+                                <Chip>{entry.category}</Chip>
+                                <p className="text-cool-grey-700 mt-4 text-lg font-medium md:text-2xl">
+                                  {entry.title}
+                                </p>
+                                <p className="text-cool-grey-400 w-full">{withEllipsis}</p>
+                                <p></p>
+                              </div>
+                              <div className="flex flex-1 justify-end">
+                                <ArrowRight className="text-indigo-700 transition-all duration-300 ease-out group-hover:translate-x-1" />
+                              </div>
+                            </div>
+                          </Link>
+                        );
+                      })
+                    ) : (
+                      <p>No entries yet.</p>
+                    )}
+                  </div>
+                </section>
+              );
+            })}
           </div>
         </div>
       </MainContainer>
