@@ -167,3 +167,13 @@ export const fetchEntryById = async (id: string) => {
 		return null;
 	}
 };
+
+export const toPlainPreview = (md: string) =>
+	md
+		.replace(/`{1,3}[\s\S]*?`{1,3}/g, '') // strip inline/blocks of code
+		.replace(/!\[[^\]]*\]\([^)]+\)/g, '') // strip images
+		.replace(/\[[^\]]*\]\([^)]+\)/g, '') // strip links (keep text below if you want)
+		.replace(/[#>*_~\-`]+/g, '') // strip markdown tokens
+		.replace(/\n+/g, ' ') // collapse new lines
+		.trim()
+		.slice(0, 250);

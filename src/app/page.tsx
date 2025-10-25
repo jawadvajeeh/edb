@@ -17,14 +17,13 @@ function Home() {
             .
           </h1>
           <p className="text-cool-grey-700 mt-4 w-full text-center text-lg md:w-3/4 md:text-2xl">
-            Capture what you built, learned, and fixed. A minimalist log that helps you grow beyond
-            your code.
+            Write quick logs, organize by category, and finally see what you accomplished this week.
           </p>
           <Link
             href="/write"
-            className="mt-8 inline-block rounded-full border-2 bg-indigo-100 px-8 py-2 text-lg font-medium text-indigo-900"
+            className="mt-8 inline-block rounded-full border-2 bg-indigo-100 px-8 py-2 text-lg font-medium text-indigo-900 transition-colors hover:bg-indigo-300 hover:text-indigo-50"
           >
-            Get Started
+            Start Now
           </Link>
         </section>
       </MainContainer>
