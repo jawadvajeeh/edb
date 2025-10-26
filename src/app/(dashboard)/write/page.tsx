@@ -12,8 +12,11 @@ import { useIsValidEntry } from '@/hooks/use-valid-entry';
 import { Editor } from '@/components/features/write/editor';
 import { EntryCategories } from '@/components/features/write/entry-categories';
 import { ToggleEditorMode } from '@/components/features/write/toggle-editor-mode';
+import { useRouter } from 'next/navigation';
+import { publishEntry } from '@/lib/utils';
 
 function Write() {
+  const router = useRouter();
   const [mode, setMode] = React.useState<Mode>('write');
 
   const [logEntry, setLogEntry] = useState<ELogEntry>({
@@ -30,7 +33,7 @@ function Write() {
     setLogEntry((prev) => ({ ...prev, [key]: value }));
   }
 
-  function handleSubmit() {
+  async function handleSubmit() {
     const entry = {
       id: String(Date.now()),
       title,
@@ -39,11 +42,9 @@ function Write() {
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };
-    const existingEntries = JSON.parse(localStorage.getItem('entries') ?? '[]') || [];
-    existingEntries.push(entry);
-    localStorage.setItem('entries', JSON.stringify(existingEntries));
-
+    await publishEntry(entry);
     setLogEntry({ category: null, content: '', title: '' });
+    router.push('/entries');
   }
 
   return (

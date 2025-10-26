@@ -13,7 +13,7 @@ import { updateEntryById } from '@/lib/utils';
 import { ELogEntry, Mode } from '@/types';
 import { ArrowRight, SendHorizontal } from 'lucide-react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { notFound, useRouter } from 'next/navigation';
 import React, { use, useEffect, useState } from 'react';
 
 function Edit({ params }: { params: Promise<{ id: string }> }) {
@@ -62,14 +62,7 @@ function Edit({ params }: { params: Promise<{ id: string }> }) {
   if (loading) return <p>...</p>;
 
   if (!entry) {
-    return (
-      <div className="mx-auto max-w-2xl p-6">
-        <p className="text-red-600">Entry not found.</p>
-        <Link href="/entries" className="text-blue-600 underline">
-          Back to entries
-        </Link>
-      </div>
-    );
+    notFound();
   }
   return (
     <div>

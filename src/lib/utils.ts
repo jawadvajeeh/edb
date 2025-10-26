@@ -177,3 +177,30 @@ export const toPlainPreview = (md: string) =>
 		.replace(/\n+/g, ' ') // collapse new lines
 		.trim()
 		.slice(0, 250);
+
+export const publishEntry = async function (log: LogEntry) {
+	try {
+		const raw = localStorage.getItem(STORAGE_KEY_ENTRIES) ?? '[]';
+		const entries: LogEntry[] = JSON.parse(raw);
+		entries.push(log);
+		localStorage.setItem(STORAGE_KEY_ENTRIES, JSON.stringify(entries));
+		return entries;
+	} catch (error) {
+		console.log(error);
+		return [];
+	}
+};
+
+export const deleteEntry = async (id: string) => {
+	try {
+		const raw = localStorage.getItem(STORAGE_KEY_ENTRIES);
+		if (!raw) return null;
+		const entries: LogEntry[] = JSON.parse(raw);
+		const updatedEntries = entries.filter(e => e.id !== id);
+		localStorage.setItem(STORAGE_KEY_ENTRIES, JSON.stringify(updatedEntries));
+		return updatedEntries;
+	} catch (error) {
+		console.log(error);
+		return null;
+	}
+};

@@ -10,7 +10,7 @@ type LogProps = {
 
 function Log({ group: g }: LogProps) {
   return (
-    <section>
+    <section className="mb-8">
       <p className="text-cool-grey-500 mb-8 text-xl font-medium md:text-3xl">{g.label}</p>
       <div className="flex flex-col gap-8">
         {g.entries.length > 0 ? (
