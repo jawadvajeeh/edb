@@ -1,4 +1,7 @@
 @import 'tailwindcss';
+@import '../styles/accent.css';
+@import '../styles/gray.css';
+@import '../styles/background.css';
 @plugin '@tailwindcss/typography';
 
 @theme inline {
@@ -73,12 +76,34 @@
   --color-teal-700: #147d64;
   --color-teal-800: #0c6b58;
   --color-teal-900: #014d40;
+
+  /* new pallette */
+  --color-background: var(--background);
+  --color-on-background: var(--on-background);
+  --color-surface: var(--blue-2);
+  --color-on-surface: var(--gray-11);
+  --color-primary: var(--blue-9);
+  --color-on-primary: var(--blue-contrast);
+  --color-secondary: var(--blue-7);
+  --color-on-secondary: var(--gray-contrast);
+  --color-text-default: var(--gray-11);
+
+  --color-background-strong: var(--blue-1);
+  --color-background-neutral: var(--blue-2);
+  --color-background-weak: var(--blue-3);
+
+  --color-text-strong: var(--gray-12);
+  --color-text-neutral: var(--gray-11);
+  --color-text-weak: var(--gray-10);
+
+  --color-link-primary: var(--blue-9);
+  --color-text-primary: var(--blue-contrast);
+  --color-link-primary-hover: var(--blue-10);
 }
 
 body {
   font-family: var(--font-montserrat);
   min-height: 100vh;
-  background-color: var(--color-cool-grey-50);
 }
 
 .prose-brand {
