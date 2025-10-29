@@ -15,10 +15,10 @@ function Entries() {
         <div className="flex flex-col items-start py-2 md:px-4">
           <div className="mb-8 flex w-full items-baseline justify-between md:mb-12">
             <div>
-              <h1 className="mb-2 text-3xl font-semibold text-indigo-900 md:text-5xl">
+              <h1 className="text-text-strong mb-2 text-3xl font-semibold md:text-5xl">
                 Progress Made Visible.
               </h1>
-              <p className="text-cool-grey-500 text-base md:text-xl">
+              <p className="text-text-neutral text-base md:text-xl">
                 Capture today’s work and build your personal engineering story over time.
               </p>
             </div>

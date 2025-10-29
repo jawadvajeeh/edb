@@ -99,11 +99,26 @@
   --color-link-primary: var(--blue-9);
   --color-text-primary: var(--blue-contrast);
   --color-link-primary-hover: var(--blue-10);
+
+  --color-border-body-strong: var(--gray-6);
+  --color-border-body-neutral: var(--gray-7);
+  --color-border-body-weak: var(--gray-8);
+  --color-border-body-hover: var(--gray-9);
+
+  --color-border-primary: var(--blue-9);
+  --color-border-primary-hover: var(--blue-10);
+
+  --color-chip-border-outline: var(--blue-9);
+  --color-chip-text-outline: var(--blue-11);
+  --color-chip-background-outline: var(--blue-2);
+
+  --color-icon-neutral: var(--gray-11);
 }
 
 body {
   font-family: var(--font-montserrat);
   min-height: 100vh;
+  background: var(--blue-1);
 }
 
 .prose-brand {
