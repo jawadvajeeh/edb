@@ -42,7 +42,7 @@ function Entry({ params }: { params: Promise<{ id: string }> }) {
           <div className="flex items-baseline justify-between md:items-center">
             <div className="flex flex-col items-start gap-2 md:flex-row md:items-center">
               <Chip>{entry.category}</Chip>
-              <p className="text-cool-grey-500 text-sm md:text-base">{date}</p>
+              <p className="text-text-neutral text-sm md:text-base">{date}</p>
             </div>
             <div>
               <Link
@@ -54,7 +54,7 @@ function Entry({ params }: { params: Promise<{ id: string }> }) {
               </Link>
             </div>
           </div>
-          <h1 className="mt-4 text-xl font-medium text-indigo-900 md:text-4xl">{entry.title}</h1>
+          <h1 className="text-text-strong mt-4 text-xl font-medium md:text-4xl">{entry.title}</h1>
           <div className="prose-brand mt-8 min-h-[200px] md:mt-12">
             <Markdown>{entry.content}</Markdown>
           </div>
