@@ -16,7 +16,7 @@ function EntryCategories({ category, handleChange = () => {} }: EntryCategoriesP
     >
       {categories.map((cat) => (
         <ToggleGroupItem
-          className="border-cool-grey-500 text-cool-grey-500 rounded-full border px-2 py-1 transition-colors data-[state=on]:border-indigo-900 data-[state=on]:bg-indigo-100 data-[state=on]:font-medium data-[state=on]:text-indigo-900 md:px-4"
+          className="text-on-surface bg-surface data-[state=on]:border-border-primary data-[state=on]:bg-primary data-[state=on]:text-on-primary border-on-surface rounded-2xl border px-2 py-1 text-sm transition-colors data-[state=on]:font-medium md:px-2 md:py-0 md:text-base"
           key={cat.value}
           value={cat.value}
         >

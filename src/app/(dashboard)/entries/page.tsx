@@ -3,6 +3,7 @@
 import { Logs } from '@/components/features/entries/logs';
 import { MainContainer } from '@/components/layout/main-container';
 import { Navbar } from '@/components/layout/navbar';
+import { CustomLink } from '@/components/ui/custom-link';
 import { PenLine } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
@@ -23,13 +24,14 @@ function Entries() {
               </p>
             </div>
             <div>
-              <Link
-                href="/write"
-                className="flex items-center gap-2 rounded-md border border-indigo-950 bg-indigo-100 p-2 font-medium text-indigo-900 transition-colors duration-100 ease-linear hover:border-none hover:bg-indigo-200 hover:text-indigo-50"
+              <CustomLink
+                className="flex items-center gap-2 px-2 text-lg"
+                variant={`ghost`}
+                href={`/write`}
               >
                 <PenLine size={16} />
                 <span className="hidden md:block">New Entry</span>
-              </Link>
+              </CustomLink>
             </div>
           </div>
           <Logs />

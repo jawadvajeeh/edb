@@ -17,7 +17,7 @@ function Editor({ mode = 'write', content = '', handleChange = () => {} }: Edito
           value={content}
           minHeight="300px"
           placeholder="Your Thoughts..."
-          className="text-cool-grey-800 w-full rounded-md bg-transparent p-2 text-xl placeholder-indigo-900/50 outline-none md:text-2xl"
+          className="text-input-text-neutral placeholder-input-text-weak w-full rounded-md bg-transparent p-2 text-xl outline-none md:text-2xl"
         />
       ) : (
         <div className="prose-brand min-h-[300px] w-full rounded-md">
@@ -25,7 +25,7 @@ function Editor({ mode = 'write', content = '', handleChange = () => {} }: Edito
             <Markdown>{content}</Markdown>
           ) : (
             <div className="min-h-[300px]">
-              <p className="text-cool-grey-300 p-4 text-center text-xl italic md:text-2xl">
+              <p className="text-text-weak p-4 text-center text-xl italic md:text-2xl">
                 Start writing to preview your content
               </p>
             </div>

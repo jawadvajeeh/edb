@@ -117,6 +117,11 @@
 
   --color-button-background-error: var(--red-9);
   --color-button-content-error: var(--blue-contrast);
+
+  --color-input-text-strong: var(--gray-12);
+  --color-input-text-neutral: var(--gray-11);
+  --color-input-text-weak: var(--gray-10);
+  --color-input-border-outline: var(--blue-8);
 }
 
 body {

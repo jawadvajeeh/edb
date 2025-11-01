@@ -7,7 +7,7 @@ const base = 'text-indigo-900 rounded-md disabled:opacity-70 disabled:cursor-not
 export const buttonVariants = cva(base, {
   variants: {
     variant: {
-      primary: 'bg-indigo-100',
+      primary: 'bg-primary text-on-primary',
     },
     size: {
       base: 'text-base p-2',

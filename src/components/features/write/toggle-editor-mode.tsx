@@ -14,7 +14,7 @@ function ToggleEditorMode({ mode, setMode }: ToggleEditorModeProps) {
         <Button
           onClick={() => setMode('write')}
           data-mode={mode}
-          className="flex items-center gap-2 rounded-r-none font-medium data-[mode=preview]:bg-indigo-50"
+          className="data-[mode=preview]:bg-secondary flex items-center gap-2 rounded-r-none font-medium"
         >
           <PenLine size={16} />
           <span className="hidden md:block">Write</span>
@@ -22,7 +22,7 @@ function ToggleEditorMode({ mode, setMode }: ToggleEditorModeProps) {
         <Button
           onClick={() => setMode('preview')}
           data-mode={mode}
-          className="flex items-center gap-2 rounded-l-none font-medium data-[mode=write]:bg-indigo-50"
+          className="data-[mode=write]:bg-secondary flex items-center gap-2 rounded-l-none font-medium"
         >
           <Eye size={16} />
           <span className="hidden md:block">Preview</span>
