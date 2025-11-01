@@ -14,6 +14,7 @@ import { EntryCategories } from '@/components/features/write/entry-categories';
 import { ToggleEditorMode } from '@/components/features/write/toggle-editor-mode';
 import { useRouter } from 'next/navigation';
 import { publishEntry } from '@/lib/utils';
+import { CustomLink } from '@/components/ui/custom-link';
 
 function Write() {
   const router = useRouter();
@@ -52,16 +53,17 @@ function Write() {
       <Navbar />
       <MainContainer>
         <div className="mb-4 flex w-full justify-end">
-          <Link
-            className="text-cool-grey-500 group flex items-center gap-2 font-medium hover:text-indigo-600"
-            href="/entries"
+          <CustomLink
+            className="group flex items-center gap-2 px-2"
+            variant={`ghost`}
+            href={`/entries`}
           >
             <span>View Entries</span>
             <ArrowRight
               strokeWidth={1.5}
-              className="transition-transform duration-300 ease-out group-hover:translate-x-1 group-hover:text-indigo-600"
+              className="group-hover:text-text-strong transition-transform duration-300 ease-out group-hover:translate-x-1"
             />
-          </Link>
+          </CustomLink>
         </div>
         <EntryTitleInput
           type="text"
@@ -81,7 +83,11 @@ function Write() {
                 disabled={!isLogEntryValid}
                 className="flex cursor-pointer items-center gap-2 px-4 font-medium"
               >
-                <SendHorizontal color="#19216c" className="md:hidden" strokeWidth={1.5} size={16} />
+                <SendHorizontal
+                  className="text-text-strong md:hidden"
+                  strokeWidth={1.5}
+                  size={16}
+                />
                 <span className="hidden md:block">Publish</span>
               </Button>
             </div>

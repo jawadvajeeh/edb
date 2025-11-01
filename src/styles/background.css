@@ -1,0 +1,13 @@
+:root,
+.light,
+.light-theme {
+  --background: #f5f7fa;
+  --on-background: #111;
+}
+
+.dark,
+.dark-theme,
+:is(.dark, .dark-theme) {
+  --background: #111;
+  --on-background: #f5f7fa;
+}

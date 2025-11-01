@@ -6,7 +6,7 @@ type ChipProps = {
 
 function Chip({ children }: ChipProps) {
   return (
-    <div className="inline-block rounded-full border border-indigo-900 bg-indigo-100 px-2 py-1 text-sm font-medium text-indigo-900 transition-colors md:px-4 md:text-base">
+    <div className="border-chip-border-outline bg-chip-background-outline text-chip-text-outline inline-block rounded-full border px-1 text-sm font-medium transition-colors md:text-base">
       {children}
     </div>
   );
