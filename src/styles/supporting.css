@@ -1,0 +1,12 @@
+:root,
+.light,
+.light-theme {
+  --red-9: #cf1124;
+  --red-10: #e12d39;
+}
+
+.dark,
+.dark-theme {
+  --red-9: #e12d39;
+  --red-10: #cf1124;
+}

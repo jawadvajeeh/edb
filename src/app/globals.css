@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import '../styles/accent.css';
+@import '../styles/supporting.css';
 @import '../styles/gray.css';
 @import '../styles/background.css';
 @plugin '@tailwindcss/typography';
@@ -113,6 +114,9 @@
   --color-chip-background-outline: var(--blue-2);
 
   --color-icon-neutral: var(--gray-11);
+
+  --color-button-background-error: var(--red-9);
+  --color-button-content-error: var(--blue-contrast);
 }
 
 body {
