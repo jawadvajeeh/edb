@@ -27,3 +27,5 @@ export type GroupOptions = {
 	weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6; // 0=Sun (default), 1=Mon, 6=Sat, etc.
 	locale?: string;                           // e.g., "en-US" (default) or "ar-SA"
 };
+
+export type ThemeType = 'light' | 'dark' | 'system';

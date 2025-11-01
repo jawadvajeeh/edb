@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 type ToggleGroupRootCtxt = {
-  value: string | null;
+  value: string | null | undefined;
   onValueChange?: (value: string | null) => void;
 };
 
@@ -19,7 +19,7 @@ const useToggleGroup = () => {
 
 type ToggleGroupRootProps = {
   children: React.ReactNode;
-  value: string | null;
+  value: string | null | undefined;
   onValueChange?: (value: string | null) => void;
 } & React.HTMLAttributes<HTMLDivElement>;
 
@@ -48,7 +48,7 @@ export function ToggleGroupItem({ children, value, ...props }: ToggleGroupItemPr
 
   function handleToggleItem() {
     if (ctxt.onValueChange) {
-      ctxt.onValueChange(isToggleOn ? null : value);
+      ctxt.onValueChange(value);
     }
   }
 
